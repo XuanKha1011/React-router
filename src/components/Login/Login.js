@@ -2,25 +2,27 @@ import './Login.css';
 
 import PropTypes from 'prop-types'
 import { useState } from 'react';
+import users from './../data/users';
 
+console.log(users.toString)
 async function loginUser(credentials) {
-  return fetch ('http://localhost:8080/login', {
+  return fetch('http://localhost:8080/login', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'Application/json'
     },
     body: JSON.stringify(credentials)
   })
-  .then(data => data.json())
+    .then(data => data.json())
 }
 
-export default function Login( {setToken} ) {
+export default function Login({setToken}) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
+    const token = await loginUser ({
       username,
       password
     });
